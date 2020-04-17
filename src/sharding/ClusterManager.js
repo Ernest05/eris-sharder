@@ -266,7 +266,7 @@ module.exports = class ClusterManager extends EventEmitter {
                         this.stats.users += message.stats.users;
                         this.stats.voice += message.stats.voice;
                         this.stats.totalMem += message.stats.ram;
-                        this.start.clusters.push({
+                        this.stats.clusters.push({
                             clusterID: clusterID,
                             shards: message.stats.shards,
                             guilds: message.stats.guilds,
