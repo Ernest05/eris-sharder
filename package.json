@@ -1,0 +1,65 @@
+{
+  "name": "eris-sharder",
+  "version": "1.0.0-fork",
+  "description": "A sharder for the discord eris library, adapted for my needs.",
+  "main": "./src/index.js",
+  "dependencies": {
+    "asciiart-logo": "^0.2.6",
+    "chalk": "^4.0.0",
+    "eris": "^0.11.2",
+    "eslint": "^6.8.0",
+    "eventemitter3": "^4.0.0"
+  },
+  "devDependencies": {
+    "tui-jsdoc-template": "^1.2.2",
+    "dotenv": "^8.0.0"
+  },
+  "scripts": {
+    "test": "node ./tests/sharder.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ernest05/eris-sharder.git"
+  },
+  "keywords": [
+    "eris",
+    "sharder",
+    "sharding",
+    "discord"
+  ],
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "author": "John Smith",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Ernest05/eris-sharder/issues"
+  },
+  "homepage": "https://github.com/Ernest05/eris-sharder#readme",
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": 9,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "env": {
+      "node": true
+    },
+    "globals": {
+      "Map": true,
+      "Promise": true
+    },
+    "rules": {
+      "eqeqeq": "warn",
+      "semi": "warn",
+      "curly": "warn",
+      "no-empty": "warn",
+      "valid-jsdoc": "warn",
+      "no-extra-semi": "warn",
+      "no-unused-vars": "warn",
+      "no-undef": "error"
+    }
+  }
+}
