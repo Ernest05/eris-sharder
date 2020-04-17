@@ -601,9 +601,8 @@ module.exports = class ClusterManager extends EventEmitter {
             return Promise.resolve(shards);
         }
 
-        const { getBotGateway } = this.eris;
-        const { shards: result } = await getBotGateway();
-        shards = result;
+        const res = await this.eris.getBotGateway();
+        shards = res.shards;
 
         if (shards === 1) {
             return Promise.resolve(shards);
