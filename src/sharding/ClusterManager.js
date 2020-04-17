@@ -595,7 +595,7 @@ module.exports = class ClusterManager extends EventEmitter {
      * @returns {Promise<number>} The maximal amount of shards on a cluster
      */
     async calculateShards () {
-        const shards = this.shardCount;
+        let shards = this.shardCount;
 
         if (shards !== 0) {
             return Promise.resolve(shards);
