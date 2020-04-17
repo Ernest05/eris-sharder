@@ -2,7 +2,7 @@
 
 const { ClusterManager } = require('../src/index');
 
-new ClusterManager('Your Discord bot token', "/main.js", {
+const clusterManager = new ClusterManager('Your Discord bot token', '/main.js', {
     name: 'Testing robot',
     clientOptions: {
         reconnectAttempts: 3,
@@ -10,9 +10,15 @@ new ClusterManager('Your Discord bot token', "/main.js", {
     },
     clusterCount: 1,
     shardCount: 1,
+    stats: true,
     webhook: {
         id: 'Logging webhook ID',
         token: 'Logging webhook token'
     },
     game: 'Testing robot'
-}).launch();
+});
+
+clusterManager.launch();
+clusterManager.on('stats', stats => {
+    console.log(JSON.stringify(stats, null, '\t'));
+});
