@@ -135,7 +135,7 @@ const sharder = new ClusterManager(token, pathToMainFile, options);
     <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></td>
     <td>The token of the webhook.</td>
     <td>Only if you don't want to enabled webhook logging system.</td>
-  <tr>
+  </tr>
 </table>
 
 # IPC
