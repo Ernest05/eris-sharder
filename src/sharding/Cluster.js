@@ -250,7 +250,7 @@ module.exports = class Cluster {
         this.bot.on('connect', shardID => {
             process.send({
                 name: 'info',
-                msg: `shard ${shardID} is connected.`
+                msg: `Shard ${shardID} is connected.`
             });
             process.send({
                 name: 'webhook',
