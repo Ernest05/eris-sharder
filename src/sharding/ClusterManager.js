@@ -176,7 +176,7 @@ module.exports = class ClusterManager extends EventEmitter {
     launch () {
         if (master.isMaster) {
             process.on('uncaughtException', error => {
-                logger.error('Cluster Manager', error.stack);
+                logger.error('Cluster manager', error.stack);
             });
 
             console.log(
@@ -193,14 +193,14 @@ module.exports = class ClusterManager extends EventEmitter {
             );
 
             process.nextTick(async () => {
-                logger.info('Cluster Manager', 'Cluster Manager has been started.');
+                logger.info('Cluster manager', 'Cluster manager has been started.');
 
                 const shards = await this.calculateShards();
 
                 this.shardCount = shards;
                 this.lastShardID = this.shardCount - 1;
 
-                logger.warn('Cluster Manager', `Trying to start ${this.shardCount} shard(s) in ${this.clusterCount} cluster(s)...`);
+                logger.warn('Cluster manager', `Trying to start ${this.shardCount} shard(s) in ${this.clusterCount} cluster(s)...`);
                 this.sendWebhook([{
                     color: yellow,
                     title: 'Cluster manager',
@@ -247,6 +247,8 @@ module.exports = class ClusterManager extends EventEmitter {
                         if (this.debug) {
                             logger.debug(`Cluster ${clusterID}`, `${message.msg}`);
                         }
+
+                        return;
                     }
 
                     case 'shardsStarted': {
@@ -367,7 +369,7 @@ module.exports = class ClusterManager extends EventEmitter {
                     }
 
                     case 'webhook': {
-                        this.sendWebhook(message.embeds);
+                        return this.sendWebhook(message.embeds);
                     }
                 }
             }
@@ -375,7 +377,7 @@ module.exports = class ClusterManager extends EventEmitter {
         master.on('disconnect', worker => {
             const clusterID = this.workers.get(worker.id);
 
-            logger.error('Cluster Manager', `cluster ${clusterID} has been disconnected.`);
+            logger.error('Cluster manager', `cluster ${clusterID} has been disconnected.`);
             this.sendWebhook([{
                 color: red,
                 title: 'Cluster manager',
@@ -405,7 +407,7 @@ module.exports = class ClusterManager extends EventEmitter {
      */
     start (clusterID) {
         if (clusterID === this.clusterCount) {
-            logger.info('Cluster Manager', `${this.clusterCount} clusters have been launched.`);
+            logger.info('Cluster manager', `${this.clusterCount} clusters have been launched.`);
             this.sendWebhook([{
                 color: green,
                 title: 'Cluster manager',
@@ -441,7 +443,7 @@ module.exports = class ClusterManager extends EventEmitter {
             });
             this.workers.set(worker.id, clusterID);
 
-            logger.warn('Cluster Manager', `Trying to launch cluster ${clusterID}...`);
+            logger.warn('Cluster manager', `Trying to launch cluster ${clusterID}...`);
             this.sendWebhook([{
                 color: yellow,
                 title: 'Cluster manager',
@@ -521,7 +523,7 @@ module.exports = class ClusterManager extends EventEmitter {
             });
         }
 
-        logger.info('Cluster Manager', `${this.shardCount} shards have been spreaded.`);
+        logger.info('Cluster manager', `${this.shardCount} shards have been spreaded.`);
 
         if (this.isStats) {
             this.startStats();
@@ -537,7 +539,7 @@ module.exports = class ClusterManager extends EventEmitter {
     restartCluster (worker, code) {
         const clusterID = this.workers.get(worker.id);
 
-        logger.error('Cluster Manager', `Cluster ${clusterID} has been killed with code ${code}.`);
+        logger.error('Cluster manager', `Cluster ${clusterID} has been killed with code ${code}.`);
         this.sendWebhook([{
             color: red,
             title: 'Cluster manager',
@@ -561,7 +563,7 @@ module.exports = class ClusterManager extends EventEmitter {
         }));
         this.workers.set(newWorderID, clusterID);
 
-        logger.warn('Cluster Manager', `Trying to restart cluster ${clusterID}...`);
+        logger.warn('Cluster manager', `Trying to restart cluster ${clusterID}...`);
         this.sendWebhook([{
             color: yellow,
             title: 'Cluster manager',
@@ -623,7 +625,7 @@ module.exports = class ClusterManager extends EventEmitter {
      * @param {*} value Value of the info
      * @returns {void}
      */
-    fetchInfo(start, type, value) {
+    fetchInfo (start, type, value) {
         const cluster = this.clusters.get(start);
 
         if (cluster) {
