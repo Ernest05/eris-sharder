@@ -284,7 +284,7 @@ module.exports = class Cluster {
         this.bot.on('shardDisconnect', (error, shardID) => {
             process.send({
                 name: 'error',
-                msg: `Shard ${shardID} has been disconnected with the following error: ${error.stack}`
+                msg: `Shard ${shardID} has been disconnected.`
             });
             process.send({
                 name: 'webhook',
@@ -292,10 +292,6 @@ module.exports = class Cluster {
                     color: red,
                     title: 'Shard',
                     description: `Cluster ${this.clusterID}: shard ${shardID} has been disconnected.`,
-                    fields: [{
-                        name: 'Error',
-                        value: `\`\`\`JS\n${error}\n\`\`\``
-                    }],
                     footer: {
                         text: getDate()
                     }
